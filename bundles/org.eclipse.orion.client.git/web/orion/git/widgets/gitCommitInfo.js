@@ -18,8 +18,9 @@ define([
 	'orion/i18nUtil',
 	'orion/git/util',
 	'orion/objects',
-	'orion/bidiUtils'
-], function(require, messages, URITemplate, i18nUtil, util, objects, bidiUtils) {
+	'orion/bidiUtils',
+	'orion/calendarSupport'
+], function(require, messages, URITemplate, i18nUtil, util, objects, bidiUtils, calendarSupport) {
 	
 	var commitTemplate = new URITemplate("git/git-repository.html#{,resource,params*}?page=1"); //$NON-NLS-0$	
 	
@@ -156,7 +157,7 @@ define([
 					commitAuthorName = bidiUtils.enforceTextDirWithUcc(commitAuthorName);
 				}
 				var authorName = this.showAuthorEmail ? i18nUtil.formatMessage(messages["nameEmail"], commitAuthorName, commit.AuthorEmail) : commitAuthorName;
-				createInfo(detailsDiv, ["", "on"], [authorName, new Date(commit.Time).toLocaleString()]); //$NON-NLS-1$ //$NON-NLS-0$
+				createInfo(detailsDiv, ["", "on"], [authorName, new Date(commit.Time).toLocaleString(calendarSupport.calendarLocale)]); //$NON-NLS-1$ //$NON-NLS-0$
 			}
 			
 			if (displayCommitter) {

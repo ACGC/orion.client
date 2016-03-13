@@ -19,8 +19,9 @@ define([
 	'orion/URITemplate',
 	'orion/contentTypes',
 	'orion/webui/littlelib',
-	'orion/bidiUtils'
-], function(messages, Deferred, mExplorer, mNavUtils, mExtensionCommands, objects, URITemplate, mContentTypes, lib, bidiUtils) {
+	'orion/bidiUtils',
+	'orion/calendarSupport'
+], function(messages, Deferred, mExplorer, mNavUtils, mExtensionCommands, objects, URITemplate, mContentTypes, lib, bidiUtils, calendarSupport) {
 		
 	var max_more_info_column_length = 60;
 	/* Internal */
@@ -202,7 +203,7 @@ define([
 	 * @param {int|string} the local time stamp
 	 */
 	NavigatorRenderer.prototype.getDisplayTime = function(timeStamp) {
-		return new Date(timeStamp).toLocaleString();
+		return new Date(timeStamp).toLocaleString(calendarSupport.calendarLocale);
 	};
 	
 	/**
